@@ -1,0 +1,60 @@
+// this file mostly deals with the typography based logics
+
+body {
+    font-family: "Lato", sans-serif;
+    font-weight: 200;
+    /* font size can be commented below because by default the font size is 1rem and it inherits from the root font size
+    which is 10px */
+    /* font-size: 16px; */
+    line-height: 1.7;
+    color: $color-grey-dark;
+
+    /* apply 30px padding around entire body, thats the reason you see box layout with gaps on the side, 
+    top and bottom of the screen */
+    /* 30px = 30/10 -> 10 from 10px of root html tag */
+    padding: 3rem;
+}
+
+.heading-primary{
+    color: $color-white;
+    text-transform: uppercase;
+
+    /* this hides the shakiness of the animation after effects, 
+    sometimes which result in element moving up down */
+
+    /* it is used where we dont have to show the visibility of the back part of the image */
+    backface-visibility: hidden;
+    
+    /* to push white button down a bit */
+    margin-bottom: 6rem;
+
+    /* block elements are useful to show elements under each other */
+    &--main{
+        display: block;
+        font-size: 6rem;
+        font-weight: 400;
+        letter-spacing: 3.5rem;
+        animation-name: moveInLeft;
+        animation-duration: 1s;
+
+        /* this is used to decide how animation will progress over the time
+        ease-out -> starts faster and ends slower
+        ease-in -> starts slower and ends faster */
+        animation-timing-function: ease-out;
+        /* animation-delay: 3s; */
+    }
+
+    &--sub{
+        display: block;
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: 1.75rem;
+        animation-name: moveInRight;
+        animation-duration: 1s;        
+        
+        /* this is used to decide how animation will progress over the time
+        ease-out -> starts faster and ends slower
+        ease-in -> starts slower and ends faster */
+        animation-timing-function: ease-out;
+    }
+}

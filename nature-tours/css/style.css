@@ -1,0 +1,227 @@
+/* this file handles the animation of entire project */
+/* for browser it is always better to make use of opacity and text transofrm method
+as they are made for this two property to accommodate */
+@keyframes moveInLeft {
+  0% {
+    /* at beginning the opacity should be 0 */
+    opacity: 0;
+    transform: translateX(-10rem); }
+  60% { }
+  80% {
+    transform: translateX(1rem); }
+  100% {
+    /* at beginning the opacity should be 0 */
+    opacity: 1;
+    /* make it look like initial stage */
+    transform: translate(0); } }
+
+@keyframes moveInRight {
+  0% {
+    /* at beginning the opacity should be 0 */
+    opacity: 0;
+    transform: translateX(10rem); }
+  80% {
+    transform: translateX(-1rem); }
+  100% {
+    /* at beginning the opacity should be 0 */
+    opacity: 1;
+    /* make it look like initial stage */
+    transform: translate(0); } }
+
+@keyframes moveFromBottom {
+  0% {
+    /* at beginning the opacity should be 0 */
+    opacity: 0;
+    transform: translateY(8rem); }
+  80% {
+    transform: translateY(-1rem); }
+  100% {
+    /* at beginning the opacity should be 0 */
+    opacity: 1;
+    /* make it look like initial stage */
+    transform: translate(0); } }
+
+/* this file contains all the basic definations for our project e.g html, body, a tags etc. */
+/* properties declared under '*' are used for css reset, some browsers might have hidden margins or paddings 
+and this is the way to reset all of those before we start coding */
+/* setting project wide font definitions*/
+*, ::after, ::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit; }
+
+html {
+  /* root font size */
+  /* font-size: 10px; */
+  /*  root font size in px is not good practice from ux point of view hence we have to convert it to percentage */
+  /* 10px = 62.5% -> (10/(default font size = 16))*100 = 62.5% */
+  font-size: 62.5%; }
+
+.body {
+  box-sizing: border-box; }
+
+body {
+  font-family: "Lato", sans-serif;
+  font-weight: 200;
+  /* font size can be commented below because by default the font size is 1rem and it inherits from the root font size
+    which is 10px */
+  /* font-size: 16px; */
+  line-height: 1.7;
+  color: #777;
+  /* apply 30px padding around entire body, thats the reason you see box layout with gaps on the side, 
+    top and bottom of the screen */
+  /* 30px = 30/10 -> 10 from 10px of root html tag */
+  padding: 3rem; }
+
+.heading-primary {
+  color: #fff;
+  text-transform: uppercase;
+  /* this hides the shakiness of the animation after effects, 
+    sometimes which result in element moving up down */
+  /* it is used where we dont have to show the visibility of the back part of the image */
+  backface-visibility: hidden;
+  /* to push white button down a bit */
+  margin-bottom: 6rem;
+  /* block elements are useful to show elements under each other */ }
+  .heading-primary--main {
+    display: block;
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.5rem;
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    /* this is used to decide how animation will progress over the time
+        ease-out -> starts faster and ends slower
+        ease-in -> starts slower and ends faster */
+    animation-timing-function: ease-out;
+    /* animation-delay: 3s; */ }
+  .heading-primary--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1.75rem;
+    animation-name: moveInRight;
+    animation-duration: 1s;
+    /* this is used to decide how animation will progress over the time
+        ease-out -> starts faster and ends slower
+        ease-in -> starts slower and ends faster */
+    animation-timing-function: ease-out; }
+
+/* link and hover used below are pseudo classes */
+.btn {
+  /* after pseudo -> trick here is to add a virtual button behind the button so when we hover out of the element this 
+    virtual button will go out of the button resulting in animated effect */
+  /* when button is clicked */ }
+  .btn, .btn:link, .btn:visited {
+    text-transform: uppercase;
+    /* removes underline if any */
+    text-decoration: none;
+    /* short cut way to right this is -> padding: 15px 40px */
+    /* top right bottom left */
+    padding: 1.5rem 4rem 1.5rem 4rem;
+    /* inline block will prevent this element from overlapping on other element */
+    display: inline-block;
+    /* this is used to round the button that can be seen in the design */
+    border-radius: 10rem;
+    /* this is short hand of animating any element, the complex way is just like what we used above using animation and keyframes */
+    /* 'all' means all property will be animated and it is always declared on the initial stage which is denoted by transition below */
+    /* doing this will apply transform transition with duration of 0.2 s which is initialized in other properties below like btn:hover, btn:active */
+    transition: all 0.2s;
+    /* this means that when the pseudo btn::after is used on virtual button, we will have to assign its position as absolute. 
+        upon being absolute it will follow the behaviour of this property. 
+        */
+    position: relative;
+    font-size: 1.6rem; }
+  .btn:hover {
+    /* in css Y axis is from top to bottom hence to move up we make use of negative value */
+    transform: translateY(-0.3rem);
+    /* shadow is used to show the embossed effect when button is hovered */
+    /* here 4 values in box-shadow indicate Xaxis, Yaxis, Blur, RGBAcolor */
+    /* so our shadow right now is in y direction down */
+    box-shadow: 0px 1rem 2rem rgba(0, 0, 0, 0.2); }
+    .btn:hover:hover::after {
+      transform: scale(1.5);
+      opacity: 0; }
+  .btn::after {
+    /* content is mandatory for after pseudo */
+    content: "";
+    /* display is mandatory for after pseudo element */
+    display: inline-block;
+    /* this height and width will inherit the height and width property of btn element */
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* if the elements are on top of another then the index will be defined by z-index; */
+    /* -1 means this virtual btn::after is behind it */
+    z-index: -1;
+    transition: all 0.4s; }
+  .btn:active {
+    transform: translateY(-0.1rem);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); }
+  .btn--white {
+    font-weight: 500;
+    background-color: white;
+    color: #777;
+    /* the white hover effect that we see on hovering on button is due to white color defined below */ }
+    .btn--white::after {
+      background-color: white; }
+  .btn--animated {
+    /* 0.75s is the value to implement delay, so this element will load after 0.7s of all elements had finished loading */
+    animation: moveFromBottom 0.8s ease-out 0.7s;
+    /* Before the animation has begun executing (during the period specified by animation-delay), 
+        the animation applies the values that it will start the first iteration with. */
+    /* hence the styles in moveFromBottom and other css of button wont be applied until animation starts */
+    /* a value of backwards, upon finishing the animation, gives the element the styles that it had before the animation began. */
+    animation-fill-mode: backwards; }
+
+.header {
+  /* vh means at every point the height of the box should be 95 percent of viewport height */
+  height: 95vh;
+  background-image: linear-gradient(to right bottom, rgba(85, 197, 122, 0.8), rgba(40, 180, 133, 0.8)), url(../img/hero.jpg);
+  /* cover -> whatever the width of viewport/element is, it will try to fix the image in that */
+  background-size: cover;
+  /* this means the top of the image will always stay intact to the top */
+  /* if you assign background-position as bottom than bottom will stay the same */
+  background-position: top;
+  /* the cut edge on bottom of header is done using clip-path method */
+  /* these points represent 4 corners of the div we wish to clip */
+  /* viewport height helps page to maintain styling even if you make screen small/big depending on its vh figure */
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  /* Position an element based on its current position without changing layout. */
+  position: relative; }
+  .header__logo-box {
+    /* position: absolute removes an element from the normal flow of the page, 
+        so you can position it independently of its parent and dependently on the nearest (in the html hierarchy)
+        relatively positioned element instead. */
+    /* Position an element based on its closest positioned ancestor position. */
+    position: absolute;
+    top: 4rem;
+    left: 4rem; }
+  .header__logo {
+    /* width will be automatically figured out by browser so we dont mention it */
+    height: 3.5rem;
+    transition: transform 1s; }
+  .header__logo:hover {
+    /* magnify image out in smooth transition on hover */
+    /* The scale() CSS function defines a transformation that resizes an element on the 2D plane. */
+    transform: scale(1.2); }
+  .header__text-heading {
+    /* we chose absolute here because this element is supposed to be
+        responsive and only work in relation to the parent element */
+    position: absolute;
+    /* this trick makes element place exactly in center */
+    top: 40%;
+    left: 50%;
+    /* transform lets the text to perfectly get divided in all directions
+        which makes text to look placed in center */
+    /* transform: translate(x,y) -> works on x and y co-ordinates 
+         so this will shift half of the width on left side coz of x and half width on right side considering y */
+    /* here translate works with reference to element itself */
+    transform: translate(-50%, -50%);
+    /* this is used to center the main white button */
+    /* imp to note that we are using text-align because the button is of style inline block and it will be treated
+        like text when we have to align it to center */
+    text-align: center; }

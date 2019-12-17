@@ -1,0 +1,90 @@
+// this file handles all the individual components that can be reused for the website
+
+/* link and hover used below are pseudo classes */
+
+.btn{
+    &,
+    &:link,
+    &:visited{
+        text-transform: uppercase;
+        /* removes underline if any */
+        text-decoration: none;
+        /* short cut way to right this is -> padding: 15px 40px */
+        /* top right bottom left */
+        padding: 1.5rem 4rem 1.5rem 4rem ;
+        /* inline block will prevent this element from overlapping on other element */
+        display: inline-block;
+        /* this is used to round the button that can be seen in the design */
+        border-radius: 10rem;
+        /* this is short hand of animating any element, the complex way is just like what we used above using animation and keyframes */
+        /* 'all' means all property will be animated and it is always declared on the initial stage which is denoted by transition below */
+        /* doing this will apply transform transition with duration of 0.2 s which is initialized in other properties below like btn:hover, btn:active */
+        transition: all 0.2s;
+        /* this means that when the pseudo btn::after is used on virtual button, we will have to assign its position as absolute. 
+        upon being absolute it will follow the behaviour of this property. 
+        */
+        position: relative;
+        font-size: 1.6rem;
+    }
+    
+    &:hover{
+        /* in css Y axis is from top to bottom hence to move up we make use of negative value */
+        transform: translateY(-0.3rem);
+        /* shadow is used to show the embossed effect when button is hovered */
+        /* here 4 values in box-shadow indicate Xaxis, Yaxis, Blur, RGBAcolor */
+        /* so our shadow right now is in y direction down */
+        box-shadow: 0px 1rem 2rem rgba($color-black, 0.2);
+
+        &:hover::after{
+            transform: scale(1.5);
+            opacity: 0;
+        }
+    }
+    
+    /* after pseudo -> trick here is to add a virtual button behind the button so when we hover out of the element this 
+    virtual button will go out of the button resulting in animated effect */
+    &::after{
+        /* content is mandatory for after pseudo */
+        content: "";
+        /* display is mandatory for after pseudo element */
+        display: inline-block;
+        /* this height and width will inherit the height and width property of btn element */
+        height: 100%;
+        width: 100%;
+        border-radius: 10rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        /* if the elements are on top of another then the index will be defined by z-index; */
+        /* -1 means this virtual btn::after is behind it */
+        z-index: -1;
+        transition: all 0.4s;
+    }
+    
+    /* when button is clicked */
+    &:active{
+        transform: translateY(-0.1rem);
+        box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+    }
+    
+    &--white{
+        font-weight: 500;
+        background-color: white;
+        color: $color-grey-dark;
+        
+        /* the white hover effect that we see on hovering on button is due to white color defined below */
+        &::after{
+            background-color: white;
+        }
+    }
+    
+    &--animated{
+        /* 0.75s is the value to implement delay, so this element will load after 0.7s of all elements had finished loading */
+        animation: moveFromBottom 0.8s ease-out 0.7s;
+        /* Before the animation has begun executing (during the period specified by animation-delay), 
+        the animation applies the values that it will start the first iteration with. */
+        /* hence the styles in moveFromBottom and other css of button wont be applied until animation starts */
+        /* a value of backwards, upon finishing the animation, gives the element the styles that it had before the animation began. */
+        animation-fill-mode: backwards;
+    }
+}

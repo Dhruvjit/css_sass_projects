@@ -1,0 +1,63 @@
+.header {
+    /* vh means at every point the height of the box should be 95 percent of viewport height */
+    height: 95vh;
+    background-image: linear-gradient(to right bottom, rgba($color-primary-light,0.8), rgba($color-primary-dark,0.8)), 
+                        url(../img/hero.jpg);
+
+    /* cover -> whatever the width of viewport/element is, it will try to fix the image in that */
+    background-size: cover;
+    /* this means the top of the image will always stay intact to the top */
+    /* if you assign background-position as bottom than bottom will stay the same */
+    background-position: top;
+    /* the cut edge on bottom of header is done using clip-path method */
+    /* these points represent 4 corners of the div we wish to clip */
+    /* viewport height helps page to maintain styling even if you make screen small/big depending on its vh figure */
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    /* Position an element based on its current position without changing layout. */
+    position: relative;
+
+    &__logo-box{
+        /* position: absolute removes an element from the normal flow of the page, 
+        so you can position it independently of its parent and dependently on the nearest (in the html hierarchy)
+        relatively positioned element instead. */
+    
+        /* Position an element based on its closest positioned ancestor position. */
+        position: absolute;
+        top: 4rem;
+        left: 4rem;
+    } 
+
+    &__logo{
+        /* width will be automatically figured out by browser so we dont mention it */
+        height: 3.5rem;
+        transition: transform 1s;
+    }
+    
+    &__logo:hover{
+        /* magnify image out in smooth transition on hover */
+        /* The scale() CSS function defines a transformation that resizes an element on the 2D plane. */
+        transform: scale(1.2);
+    }
+
+    &__text-heading{
+        /* we chose absolute here because this element is supposed to be
+        responsive and only work in relation to the parent element */
+        position: absolute;
+        /* this trick makes element place exactly in center */
+        top: 40%;
+        left: 50%;
+        /* transform lets the text to perfectly get divided in all directions
+        which makes text to look placed in center */
+        /* transform: translate(x,y) -> works on x and y co-ordinates 
+         so this will shift half of the width on left side coz of x and half width on right side considering y */
+    
+         /* here translate works with reference to element itself */
+        transform: translate(-50%,-50%);
+    
+        /* this is used to center the main white button */
+        /* imp to note that we are using text-align because the button is of style inline block and it will be treated
+        like text when we have to align it to center */
+        text-align: center;
+    }
+
+}
