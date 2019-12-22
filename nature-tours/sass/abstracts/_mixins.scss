@@ -1,0 +1,29 @@
+// mixins are just reusable peace of code that can be reused wherever its needed
+
+@mixin clearfix {
+    
+    // append a pseudo element after this element that will clear the flaw
+    //  flaw here is that -> when the elements are all floated using the float property, the height automatically
+    // collapses and turns 0
+
+    /*
+        When an element, such as a div is floated, its parent container no longer considers its height, i.e.
+
+        <div id="main">
+            <div id="child" style="float:left;height:40px;"> Hi</div>
+        </div>
+
+        The parent container will not be be 40 pixels tall by default. 
+        This causes a lot of weird little quirks if you're using these containers to structure layout.
+        So the clearfix class that various frameworks use fixes this problem by making the parent 
+        container "acknowledge" the contained elements. 
+
+        why clear:both? answers are here https://stackoverflow.com/questions/12871710/what-does-the-css-rule-clear-both-do
+    */
+    &::after{
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+}

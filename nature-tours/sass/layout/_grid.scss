@@ -5,11 +5,75 @@
         adjust the width so that it will fill 100% of available space
     */ 
     // 1140 pixels -> 1140/10 rem
-    max-width: 114rem;
+    max-width: $grid-width;
     background-color: #eee;
     color: black;
     //  center the row for block element inside block element
     //  the way it works is top, left margins are '0' and left and right are 'auto'
     // i.e. the left and right margin will automatically be same
     margin: 0 auto;
+
+    // equivalent of .row:not()
+    // not here means -> select everything except the last child
+    // so here we intend to implement bottom margin property on all elements except the last child
+    // other alternative of implementing this is to only use plain &:last-child{margin-bottom: 0;} but we can still do better
+    &:not(:last-child){
+        margin-bottom: $gutter-vertical;
+    }
+
+    // include clearfix to avoid height from collapsing
+    @include clearfix;
+    
+    // select all class attributes that start with 'col-'
+    // attribute selector method
+    [class^="col-"]{
+        background-color: red;
+        float: left;
+
+        &:not(:last-child){
+            margin-right: $gutter-horizontal;
+        }
+    }
+
+    .col-1-of-2{
+        // this allows us to make calculations by mixing units
+        // in sass -> we cannot do operations using multiple units e.g. mixing rems with pixels or percentages
+        //  this calculations occur when website is getting rendered
+        // in order to make sass work in calc we have to wrap that expression in #{}
+        width: calc( (100% - #{$gutter-horizontal})/2 );
+        // rest of the code here will be inherited from the attribute selector above
+    }
+
+    .col-1-of-3{
+        
+        // here we do 2 * gutter-horizontal because there are three columns in one row with 2 gaps 
+        // divide by 3 because this time we have three columns 
+        width: calc( (100% - 2 * #{$gutter-horizontal})/3 );
+        // rest of the code here will be inherited from the attribute selector above
+    }
+
+    .col-1-of-4{
+        
+        width: calc( (100% - 3 * #{$gutter-horizontal})/4 );
+        // rest of the code here will be inherited from the attribute selector above
+    }
+
+    .col-2-of-3{
+        // 2 times the width of simple column + gutter-width makes it complete 2 of 3 column
+        // this translates to gutter width minus 2 columns width which is calculated by subtracting 2 gutter widths
+        width: calc( #{$gutter-horizontal} + (2 * ((100% - 2 * #{$gutter-horizontal})/3 )));
+        // rest of the code here will be inherited from the attribute selector above
+    }
+
+    .col-2-of-4{
+        // 2 times the width of simple column + gutter-width makes it complete 2 of 4 column
+        width: calc( #{$gutter-horizontal} + (2 * ((100% - 3 * #{$gutter-horizontal})/4 )));
+        // rest of the code here will be inherited from the attribute selector above
+    }
+
+    .col-3-of-4{
+        // 3 times the width of simple column + 2 times gutter-width makes it complete 2 of 4 column
+        width: calc( 2*(#{$gutter-horizontal}) + (3 * ((100% - 3 * #{$gutter-horizontal})/4 )));
+        // rest of the code here will be inherited from the attribute selector above
+    }
 }
