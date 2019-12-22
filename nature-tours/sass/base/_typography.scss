@@ -1,14 +1,15 @@
 // this file mostly deals with the typography based logics
 
-body {
+body{
     font-family: "Lato", sans-serif;
     font-weight: 200;
+    
     /* font size can be commented below because by default the font size is 1rem and it inherits from the root font size
     which is 10px */
     /* font-size: 16px; */
+    
     line-height: 1.7;
     color: $color-grey-dark;
-
     /* apply 30px padding around entire body, thats the reason you see box layout with gaps on the side, 
     top and bottom of the screen */
     /* 30px = 30/10 -> 10 from 10px of root html tag */

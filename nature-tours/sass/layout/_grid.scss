@@ -1,0 +1,15 @@
+.row{
+
+    /* here we are using max-width because if there is enough space then
+        space it out till 114 rem but if the view port is smaller than 114rem then
+        adjust the width so that it will fill 100% of available space
+    */ 
+    // 1140 pixels -> 1140/10 rem
+    max-width: 114rem;
+    background-color: #eee;
+    color: black;
+    //  center the row for block element inside block element
+    //  the way it works is top, left margins are '0' and left and right are 'auto'
+    // i.e. the left and right margin will automatically be same
+    margin: 0 auto;
+}

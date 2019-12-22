@@ -225,3 +225,13 @@ body {
     /* imp to note that we are using text-align because the button is of style inline block and it will be treated
         like text when we have to align it to center */
     text-align: center; }
+
+.row {
+  /* here we are using max-width because if there is enough space then
+        space it out till 114 rem but if the view port is smaller than 114rem then
+        adjust the width so that it will fill 100% of available space
+    */
+  max-width: 114rem;
+  background-color: #eee;
+  color: black;
+  margin: 0 auto; }
