@@ -6,7 +6,6 @@
     */ 
     // 1140 pixels -> 1140/10 rem
     max-width: $grid-width;
-    background-color: #eee;
     color: black;
     //  center the row for block element inside block element
     //  the way it works is top, left margins are '0' and left and right are 'auto'
@@ -27,7 +26,6 @@
     // select all class attributes that start with 'col-'
     // attribute selector method
     [class^="col-"]{
-        background-color: red;
         float: left;
 
         &:not(:last-child){

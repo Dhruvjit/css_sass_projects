@@ -3,7 +3,7 @@
 body{
     @import url('https://fonts.googleapis.com/css?family=Lato:400,900&display=swap');
     font-family: "Lato", sans-serif;
-    font-weight: 200;
+    font-weight: 600;
     /* font size can be commented below because by default the font size is 1rem and it inherits from the root font size
     which is 10px */
     /* font-size: 16px; */
@@ -56,5 +56,44 @@ body{
         ease-out -> starts faster and ends slower
         ease-in -> starts slower and ends faster */
         animation-timing-function: ease-out;
+    }
+}
+
+.heading-secondary{
+    display: inline-block;
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
+    // background clip will clip the background based on text that is written
+    background-clip: text;
+    -webkit-background-clip: text;
+    // here color is kept transparent to show and enhance the clipped gradient in background
+    color: transparent;
+    letter-spacing: 2px;
+    transition: all 0.2s;
+
+    &:hover{
+        // hover effect to raise the text in upward direction on hover
+        transform: translateY(-0.5rem);
+        // x_direction -> 0.5rem, y_direction -> 1rem, blur -> 2rem
+        text-shadow: 0.5rem 1rem 2rem rgba($color-black, 0.2);
+    }
+}
+
+.heading-tertiary{
+    font-size: $default-font-size;
+    color: $color-grey-dark;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.paragraph{
+    font-size: $default-font-size;
+    color: $color-grey-dark;
+    font-weight: 300;
+    // select everything except last child
+    &:not(:last-child){
+        margin-bottom: 3rem;
     }
 }

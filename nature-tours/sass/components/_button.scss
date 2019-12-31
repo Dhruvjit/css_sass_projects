@@ -24,7 +24,7 @@
         upon being absolute it will follow the behaviour of this property. 
         */
         position: relative;
-        font-size: 1.6rem;
+        font-size: $default-font-size;
     }
     
     &:hover{
@@ -86,5 +86,29 @@
         /* hence the styles in moveFromBottom and other css of button wont be applied until animation starts */
         /* a value of backwards, upon finishing the animation, gives the element the styles that it had before the animation began. */
         animation-fill-mode: backwards;
+    }
+}
+
+.btn-text{
+    &:link, &:visited{
+        font-size: $default-font-size;
+        color: $color-primary-dark;
+        display: inline-block;
+        text-decoration: none;
+        border-bottom: 1px solid $color-primary-dark;
+        padding: 3px;
+        transition: all 0.2s;
+    }
+
+    &:hover{
+        background-color: $color-primary-dark;
+        color: $color-white;
+        box-shadow: 0 1rem 2rem rgba($color-black, 0.15);
+        transform: translateY(-2px);
+    }
+
+    &:active{
+        box-shadow: 0 1rem 1rem rgba($color-black, 0.15);
+        transform: translateY(0);
     }
 }

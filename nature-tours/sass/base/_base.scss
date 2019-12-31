@@ -18,8 +18,8 @@ html{
     /* font-size: 12px; */
     
     /*  root font size in px is not good practice from ux point of view hence we have to convert it to percentage */
-    /* 12px = 75% -> (12/(default font size = 16))*100 = 75% */
-    font-size: $default-font-size;
+    /* 10px = 62.5% -> (12/(default font size = 16))*100 = 75% */
+    font-size: 62.5%;
     
 }
 

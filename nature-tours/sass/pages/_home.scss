@@ -1,0 +1,26 @@
+.section-about{
+    background-color: $color-grey-light-1;
+    // 25rem on top and bottom, right and left is 0
+    padding: 25rem 0;
+    // total height of header = 95vh, total polygon clip of header = 75 so 95-75 = 20
+    margin-top: -20vh;
+}
+
+// feature section of the page
+.section-features{
+    // top bottom 20rem and 0 stands for left and right here
+    padding: 20rem 0;
+    background-image: linear-gradient(to right bottom, rgba($color-primary-light,0.8), rgba($color-primary-dark,0.8)), 
+    url(../img/nat-4.jpg);
+    background-size: cover;
+
+    // to slant the image in feature section diagonally
+    transform: skewY(-7deg);
+
+    // this is to prevent cards inside the image from skewing along with the image
+    // selects everything that is direct child of this element i.e. section-features and its
+    // direct child in this case is 'row' which contains all the cards
+    & > * {
+        transform: skewY(7deg);
+    }
+}
