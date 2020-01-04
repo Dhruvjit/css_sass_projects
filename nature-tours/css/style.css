@@ -284,6 +284,94 @@ body {
   .feature-box:hover {
     transform: translateY(-1.5rem) scale(1.03); }
 
+.card {
+  perspective: 150rem;
+  -moz-perspective: 150rem;
+  position: relative;
+  height: 50rem;
+  /* when card is hovered, then the card__side will undergo transform */ }
+  .card__side {
+    background-color: orangered;
+    height: 50rem;
+    transition: all 0.8;
+    color: #777;
+    font-size: 2rem;
+    transition: all 0.8s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    /* this is used here because our image is overflowing the corners without this property */
+    overflow: hidden;
+    box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15); }
+    .card__side--front {
+      background-color: #fff; }
+    .card__side--back {
+      background-color: green;
+      transform: rotateY(180deg); }
+      .card__side--back-1 {
+        background-image: linear-gradient(to right bottom, #ffb900, #ff7730); }
+  .card:hover .card__side--front {
+    transform: rotateY(-180deg); }
+  .card:hover .card__side--back {
+    transform: rotateY(0); }
+  .card__picture {
+    /* cover -> whatever the width of viewport/element is, it will try to fix the image in that */
+    background-size: cover;
+    height: 23rem;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%); }
+    .card__picture--1 {
+      /* here observe the path instead of ../../ we are using ../ because
+                when this code will be compiled, this image i.e. nat-5.jpg will
+                be accessed just one level up 
+            */
+      background-image: linear-gradient(to right bottom, #ffb900, #ff7730), url(../img/nat-5.jpg);
+      background-blend-mode: screen; }
+    .card__picture--2 {
+      /* here observe the path instead of ../../ we are using ../ because
+                when this code will be compiled, this image i.e. nat-5.jpg will
+                be accessed just one level up 
+            */
+      background-image: url(../img/nat-5.jpg); }
+    .card__picture--3 {
+      /* here observe the path instead of ../../ we are using ../ because
+                when this code will be compiled, this image i.e. nat-5.jpg will
+                be accessed just one level up 
+            */
+      background-image: url(../img/nat-5.jpg); }
+  .card__heading {
+    font-size: 2.8rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    text-align: right;
+    color: #fff;
+    /* position is absolute here because we wish to put it independently on picture elment */
+    position: absolute;
+    top: 12rem;
+    right: 3rem;
+    width: 75%; }
+  .card__heading-span {
+    padding: 1rem 1.5rem;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone; }
+    .card__heading-span--1 {
+      background-image: linear-gradient(to right bottom, rgba(255, 185, 0, 0.85), rgba(255, 119, 48, 0.85)); }
+  .card__details {
+    padding: 3rem; }
+    .card__details ul {
+      list-style: none;
+      width: 80%;
+      margin: 0 auto; }
+      .card__details ul li {
+        text-align: center;
+        font-size: 1.5rem;
+        padding: 1rem; }
+        .card__details ul li:not(:last-child) {
+          border-bottom: 1px solid #eeeeee; }
+
 .header {
   /* vh means at every point the height of the box should be 95 percent of viewport height */
   height: 95vh;
@@ -297,6 +385,7 @@ body {
   /* these points represent 4 corners of the div we wish to clip */
   /* viewport height helps page to maintain styling even if you make screen small/big depending on its vh figure */
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
   /* Position an element based on its current position without changing layout. */
   position: relative; }
   .header__logo-box {
@@ -387,6 +476,17 @@ body {
   padding: 20rem 0;
   background-image: linear-gradient(to right bottom, rgba(85, 197, 122, 0.8), rgba(40, 180, 133, 0.8)), url(../img/nat-4.jpg);
   background-size: cover;
-  transform: skewY(-7deg); }
+  transform: skewY(-7deg);
+  margin-top: -11rem;
+  /* this is to prevent cards inside the image from skewing along with the image
+    * selects everything that is direct child of this element i.e. section-features and its
+    * direct child in this case is 'row' which contains all the cards
+    * direct child -> direct child is the first child element of any element
+    */ }
   .section-features > * {
     transform: skewY(7deg); }
+
+.section-tours {
+  background-color: #f7f7f7;
+  padding: 25rem 0 50rem 0;
+  margin-top: -20vh; }

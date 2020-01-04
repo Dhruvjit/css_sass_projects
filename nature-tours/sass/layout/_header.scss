@@ -13,6 +13,8 @@
     /* these points represent 4 corners of the div we wish to clip */
     /* viewport height helps page to maintain styling even if you make screen small/big depending on its vh figure */
     clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+    // clip path cannot work on IE and microsoft edge 
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
     /* Position an element based on its current position without changing layout. */
     position: relative;
 

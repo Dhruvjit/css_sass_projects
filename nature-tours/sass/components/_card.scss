@@ -1,0 +1,156 @@
+.card{
+    // this property is useful for making card rotation more real and smooth
+    //  always keep it so high because lower the value the more dramatic it is
+    //  this is basically for functionality
+    perspective: 150rem;
+    // perspective for mozillaa
+    -moz-perspective: 150rem;
+    position: relative;
+    // this height has to be specified because on setting card__side absolute below,
+    //  they are taken out of the card and then the height of the card collapses
+    height: 50rem;
+
+    &__side{
+        background-color: orangered;
+        height: 50rem;
+        transition: all 0.8;
+        color: $color-grey-dark;
+        font-size: 2rem;
+        //  ease for smooth transition
+        transition: all 0.8s ease;
+        // absolute is in relation to relative used above in card
+        position: absolute;
+        top: 0; left: 0;
+        width: 100%;
+
+        // if we set it to hidden, it hides the back part of the element
+        // hence we use it here because once its set to hidden the back part of the card will be hidden by default
+        backface-visibility: hidden;
+        border-radius: 10px;
+        /* this is used here because our image is overflowing the corners without this property */
+        overflow: hidden;
+        box-shadow: 0 1.5rem 4rem $box-shadow-primary;
+
+        &--front{
+            background-color: $color-white;
+        }
+
+        &--back{
+            background-color: green;
+            // the backside is also like front side always at 180deg
+            transform: rotateY(180deg);
+
+            &-1{
+                background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark);
+            }
+        }
+    }
+
+    /* when card is hovered, then the card__side will undergo transform */
+    &:hover &__side--front{
+        // rotate on hover from y direction
+        transform: rotateY(-180deg);
+    }
+
+    &:hover &__side--back{
+        // rotate on hover from y direction
+        //  if the back side is already 180deg then it must reset to 0
+        transform: rotateY(0);
+    }
+
+    // Front side styling 
+    &__picture {
+    
+        /* cover -> whatever the width of viewport/element is, it will try to fix the image in that */
+        background-size: cover;
+        height: 23rem;
+        -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+
+        &--1{
+            /* here observe the path instead of ../../ we are using ../ because
+                when this code will be compiled, this image i.e. nat-5.jpg will
+                be accessed just one level up 
+            */
+            background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark),
+            url(../img/nat-5.jpg);
+            // this is new property of css which doesnt work on internet explorer or edge
+            // blend mode will blend the url and gradient color mentioned above in background-image
+            background-blend-mode: screen;
+        }
+
+                
+        &--2{
+            /* here observe the path instead of ../../ we are using ../ because
+                when this code will be compiled, this image i.e. nat-5.jpg will
+                be accessed just one level up 
+            */
+            background-image: url(../img/nat-5.jpg);
+        }
+
+                
+        &--3{
+            /* here observe the path instead of ../../ we are using ../ because
+                when this code will be compiled, this image i.e. nat-5.jpg will
+                be accessed just one level up 
+            */
+            background-image: url(../img/nat-5.jpg);
+        }
+    }
+
+    &__heading{
+        font-size: 2.8rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        text-align: right;
+        color: $color-white;
+        /* position is absolute here because we wish to put it independently on picture elment */
+        position: absolute;
+        top: 12rem;
+        right: 3rem;
+        // we want the heading to get wrapped
+        width: 75%;
+    }
+
+    &__heading-span{
+
+        padding: 1rem 1.5rem;
+        // with normal padding there is only space at beginning and end of the word, 
+        // but with box-decoration we can treat word break as two different entities and put equal amount of breaks
+        // within
+        box-decoration-break: clone;
+        // for chrome
+        -webkit-box-decoration-break: clone;
+        
+        &--1{
+            background-image: linear-gradient(
+                to right bottom, 
+                rgba($color-secondary-light, 0.85), 
+                rgba($color-secondary-dark, 0.85)
+            );
+        }
+    }
+
+    &__details{
+        // this is to create some padding on all sides
+        padding: 3rem;
+        ul{
+            // we do this everytime for unordered list
+            list-style: none;
+            width: 80%;
+            // to center element this is the cutest way, 0 for top, bottom and auto for left and right
+            margin: 0 auto;
+            li{
+                text-align: center;    
+                // color is inherited from the parent which is card__side element
+                font-size: 1.5rem;
+                padding: 1rem;
+                // dont apply seperator border line to the last element
+                &:not(:last-child){
+                    border-bottom: 1px solid $color-grey-light-2;
+                }
+            }
+        }
+    }
+
+}

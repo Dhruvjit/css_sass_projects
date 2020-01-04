@@ -13,14 +13,25 @@
     background-image: linear-gradient(to right bottom, rgba($color-primary-light,0.8), rgba($color-primary-dark,0.8)), 
     url(../img/nat-4.jpg);
     background-size: cover;
-
     // to slant the image in feature section diagonally
     transform: skewY(-7deg);
+    margin-top: -11rem;
 
-    // this is to prevent cards inside the image from skewing along with the image
-    // selects everything that is direct child of this element i.e. section-features and its
-    // direct child in this case is 'row' which contains all the cards
+    /* this is to prevent cards inside the image from skewing along with the image
+    * selects everything that is direct child of this element i.e. section-features and its
+    * direct child in this case is 'row' which contains all the cards
+    * direct child -> direct child is the first child element of any element
+    */
     & > * {
         transform: skewY(7deg);
     }
+}
+
+.section-tours {
+    background-color: $color-grey-light-1;
+    // lets place this section in center 
+    // 25rem on top, 0 on right side, 50rem on bottom and 0 on left side
+    padding: 25rem 0 50rem 0;
+    // total height of header = 95vh, total polygon clip of header = 75 so 95-75 = 20
+    margin-top: -20vh;
 }
