@@ -14,8 +14,9 @@
         font-size: 6rem;
         margin-bottom: 0.5rem;
         display: inline-block;
+        // here we use linear gradient to icon image because our icons have gradient
         background-image: linear-gradient(to right, $color-primary-light, $color-primary-dark);
-        // background clip will clip the background based on text that is written
+        // background clip will clip the background based on text that is written and gradient that is applied above
         background-clip: text;
         -webkit-background-clip: text;
         // here color is kept transparent to show and enhance the clipped gradient in background

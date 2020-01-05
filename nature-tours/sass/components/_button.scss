@@ -37,6 +37,7 @@
 
         &:hover::after{
             transform: scale(1.5);
+            // this is to show invisible after max zoom effect on button
             opacity: 0;
         }
     }

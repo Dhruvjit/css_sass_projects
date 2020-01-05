@@ -43,6 +43,14 @@
             &-1{
                 background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark);
             }
+
+            &-2{
+                background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark);
+            }
+            
+            &-3{
+                background-image: linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark);
+            }
         }
     }
 
@@ -82,19 +90,27 @@
                 
         &--2{
             /* here observe the path instead of ../../ we are using ../ because
-                when this code will be compiled, this image i.e. nat-5.jpg will
+                when this code will be compiled, this image i.e. nat-6.jpg will
                 be accessed just one level up 
             */
-            background-image: url(../img/nat-5.jpg);
+            background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark),
+            url(../img/nat-6.jpg);
+            // this is new property of css which doesnt work on internet explorer or edge
+            // blend mode will blend the url and gradient color mentioned above in background-image
+            background-blend-mode: screen;
         }
 
                 
         &--3{
             /* here observe the path instead of ../../ we are using ../ because
-                when this code will be compiled, this image i.e. nat-5.jpg will
+                when this code will be compiled, this image i.e. nat-7.jpg will
                 be accessed just one level up 
             */
-            background-image: url(../img/nat-5.jpg);
+            background-image: linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark),
+            url(../img/nat-7.jpg);
+            // this is new property of css which doesnt work on internet explorer or edge
+            // blend mode will blend the url and gradient color mentioned above in background-image
+            background-blend-mode: screen;
         }
     }
 
@@ -129,6 +145,22 @@
                 rgba($color-secondary-dark, 0.85)
             );
         }
+
+        &--2{
+            background-image: linear-gradient(
+                to right bottom, 
+                rgba($color-primary-light, 0.85), 
+                rgba($color-primary-dark, 0.85)
+            );
+        }
+
+        &--3{
+            background-image: linear-gradient(
+                to right bottom, 
+                rgba($color-tertiary-light, 0.85), 
+                rgba($color-tertiary-dark, 0.85)
+            );
+        }
     }
 
     &__details{
@@ -153,4 +185,31 @@
         }
     }
 
+    &__call-to-action{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        // we are giving this width because the button with label 'book now' on the back of the card
+        //  is adapting to the width of this element and hence text inside that button is getting wrapped
+        // and shown in two rows
+        width: 90%;
+        text-align: center;
+    }
+
+    &__price-box{
+        text-align: center;
+        color: $color-white;
+        margin-bottom: 8rem;
+    }
+
+    &__price-only{
+        font-size: 1.4rem;
+        text-transform: uppercase;
+    }
+
+    &__price-value{
+        font-size: 6rem;
+        font-weight: 300;
+    }
 }
