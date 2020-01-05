@@ -1,0 +1,106 @@
+.story{
+    width: 75%;
+    //  nice little trick to center block elements
+    margin: 0 auto;
+    box-shadow: 0 3rem 6rem rgba($color-black, 0.1);
+    background-color: $color-white;
+    border-radius: 3px;
+    padding: 6rem;
+    // to accomodate translateX direction on shape element below we have to increase padding by 3 element
+    padding-left: 9rem;
+    font-size: $default-font-size;
+    transform: skewX(-12deg);
+    
+    /* select all direct elements, in our case they are shape and text element */
+    // & > * {
+        /*  
+            undo the skewX done in story element by using reverse skew technique in this method
+
+            skew cannot be used here because there is precedence problem as translateX(-3rem) in &__shape
+            element is already in use and currently in css this limitation cannot be overridden 
+            transform: skewX(12deg); 
+
+            workaround -> manually add this code to direct child elements i.e. shape and text like below and 
+            then it shall work
+        */
+    // }
+
+    // circle pic
+    &__shape{
+        width: 15rem;
+        height: 15rem;
+        // circle property is quiet demanding and float, width and heigh properties are mandatory
+        float: left;
+        background-color: olivedrab;
+
+        /* 
+            this code with shape-outside property is useful for side text to get wrapped 
+            around pic in circular style, but not to draw a circle. For drawing a circle we use clip-path as 
+            shown below 
+        */
+        // 50% -> 7.5rem which is 7.5rem x 2 = 15 -> our diameter and dimension of our width and height
+        // this means this is the center of circle, horizontally and vertically
+        -webkit-shape-outside: circle(50% at 50% 50%);
+        shape-outside: circle(50% at 50% 50%); 
+
+        /* code to draw a circle */
+        /* 
+            first parameter 50% controls the size of circle also diameter, next 50% 50% controls movement of 
+            circle at x and y axis on the screen
+        */
+        clip-path: circle(50% at 50% 50%);
+        -webkit-clip-path: circle(50% at 50% 50%);
+        // never to use margins on elements which are floated to changed their alignment but to use transform properties
+        transform: translateX(-3rem) skewX(13deg);
+        // this is to accommodate position absolute in &__caption
+        position: relative;
+    }
+
+    // parent element for this element is &__shape so 100% width is 15rem as stated in above element
+    &__image{
+        // width is automatically inherted from the parent element but height we have to mention as
+        // width is greater than height for our image hence we have to mention height to fill the circle
+        height: 100%;
+        transform: translateX(-4rem) scale(1.4);
+        backface-visibility: hidden;
+        transition: all 0.5s;
+        -webkit-transition: all 0.5s;
+    }
+
+    &__text{
+        transform: skewX(12deg); 
+    }
+
+    &__caption{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        // translate(x, y) position -> 20% will push text down which on hovering we will animate from down to up
+        transform: translate(-50%, 20%);
+        text-transform: 1.7rem;
+        text-align: center;
+        color: $color-white;
+        opacity: 0;
+        /* 
+            this hides the shakiness of the animation after effects, 
+            sometimes which result in element moving up down 
+        */
+        /* it is used where we dont have to show the visibility of the back part of the image */
+        backface-visibility: hidden;
+        transition: all 0.5s;
+    }
+
+    // as soon as story is hovered, change the caption
+    &:hover &__caption{
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+
+    // as soon as story is hovered, change the caption 
+    &:hover &__image{
+        // zoom out the image on hover and blur it to give it nice look and feel
+        transform: translateX(-4rem) scale(1);
+        // we have reduced the brightness here because we want to make image look dark
+        filter: blur(3px) brightness(80%);
+    }
+}

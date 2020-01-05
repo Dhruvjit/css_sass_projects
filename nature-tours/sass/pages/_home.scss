@@ -35,3 +35,9 @@
     // total height of header = 95vh, total polygon clip of header = 75 so 95-75 = 20
     margin-top: -20vh;
 }
+
+.section-stories{
+    //  15 top and bottom and 0 for left and right
+    padding: 15rem 0;
+    background-color: $color-grey-light-1;
+}
