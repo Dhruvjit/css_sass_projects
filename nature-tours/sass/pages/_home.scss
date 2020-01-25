@@ -30,8 +30,8 @@
 .section-tours {
     background-color: $color-grey-light-1;
     // lets place this section in center 
-    // 25rem on top, 0 on right side, 50rem on bottom and 0 on left side
-    padding: 25rem 0 50rem 0;
+    // 25rem on top, 0 on right side, 15rem on bottom and 0 on left side
+    padding: 25rem 0 15rem 0;
     // total height of header = 95vh, total polygon clip of header = 75 so 95-75 = 20
     margin-top: -20vh;
 }
@@ -39,5 +39,6 @@
 .section-stories{
     //  15 top and bottom and 0 for left and right
     padding: 15rem 0;
-    background-color: $color-grey-light-1;
+    //  this is to accommodate video container which is set  to position absolute in bg-video.scss
+    position: relative;
 }

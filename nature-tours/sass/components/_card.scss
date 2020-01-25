@@ -70,6 +70,7 @@
     &__picture {
     
         /* cover -> whatever the width of viewport/element is, it will try to fix the image in that */
+        // here we used this to fit entire image in background of upper card space as seen on card
         background-size: cover;
         height: 23rem;
         -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);

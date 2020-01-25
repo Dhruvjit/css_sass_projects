@@ -273,6 +273,17 @@
         -->
 
         <section class="section-stories">
+            <!-- div that contains video playing as background -->
+            <div class="bg-video">
+                <!-- embed video on webpage using html5 video element -->
+                <video class="bg-video__content" autoplay muted loop>
+                    <source src="img/video.mp4" type="video/mp4">
+                    <source src="img/video.webm" type="video/webm">
+                    <!-- this text will appear if both videos are not rendered by the browser -->
+                    Your browser is not supported
+                </video>
+            </div>
+
             <!-- center the text which is inside this div -->
             <div class="u-center-text u-margin-bottom-big">
                 <h2 class="heading-secondary">
